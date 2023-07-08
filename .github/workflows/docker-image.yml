@@ -5,6 +5,9 @@ on:
    tags:
         - 'v*.*.*'
 
+env:
+  docker_repo: astin75/fibonacci        
+
 jobs:
 
   build:
@@ -34,6 +37,6 @@ jobs:
         with :
           context : .
           push : true
-          tags: astin75/fibonacci:${{ steps.vars.outputs.tag }}
+          tags: ${{ env.docker_repo }}:${{ steps.vars.outputs.tag }}
         
 
