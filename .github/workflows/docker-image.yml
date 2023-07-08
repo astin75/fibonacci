@@ -6,7 +6,7 @@ on:
         - 'v*.*.*'
 
 env:
-  docker_repo: astin75/fibonacci        
+  docker_repo: sungeun75/fibonacci        
 
 jobs:
 
