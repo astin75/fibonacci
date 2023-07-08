@@ -31,4 +31,4 @@ jobs:
     
       - name: Build the Docker image
       - uses: actions/checkout@v3
-      - run: docker build . --file Dockerfile --tag astin75/fibonacci:$RELEASE_VERSION
+        run: docker build . --file Dockerfile --tag astin75/fibonacci:$RELEASE_VERSION
