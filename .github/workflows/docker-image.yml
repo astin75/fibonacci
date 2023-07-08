@@ -5,7 +5,7 @@ on:
    tags:
         - 'v*'
 env:
-  tag_version: v1.0.0
+  tag_version: v1.0.1
 
 jobs:
 
