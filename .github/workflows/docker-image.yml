@@ -19,6 +19,7 @@ jobs:
       - name: Set output
         id: vars
         run: echo "tag=${GITHUB_REF#refs/*/}" >> $GITHUB_OUTPUT
+
       - name: Check output
         env:
           RELEASE_VERSION: ${{ steps.vars.outputs.tag }}
@@ -32,11 +33,25 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}    
 
-      - name: Build and push
-        uses: docker/build-push-action@v4
-        with :
-          context : .
-          push : true
-          tags: ${{ env.docker_repo }}:${{ steps.vars.outputs.tag }}
+      # - name: Build and push
+      #   uses: docker/build-push-action@v4
+      #   with :
+      #     context : .
+      #     push : true
+      #     tags: ${{ env.docker_repo }}:${{ steps.vars.outputs.tag }}
+      
+
+      - uses: actions/checkout@v3
+        name: Checkout private tools
+        with:
+          repository: https://github.com/astin75/git_ops
+          token: ${{ secrets.PERSONAL_ACCESS_TOKENS }} 
+      - run: |
+          date > generated.txt
+          git add .
+          git commit -m "generated"
+          git push
+
+      
         
 
