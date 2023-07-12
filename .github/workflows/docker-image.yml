@@ -47,7 +47,27 @@ jobs:
           repository: astin75/git_ops
           token: ${{ secrets.PERSONAL_ACCESS_TOKENS }} 
       - run: |
-          date > generated.txt
+          {
+            "apiVersion": "apps/v1",
+            "kind": "WorkflowTemplate",
+            "metadata": {
+              "name": "fibonacci-template"
+            },
+            "spec": {
+              "arguments": {
+                "parameters": [
+                  {
+                    "name": "FIBONACCI_IMAGE",
+                    "value": "astin75/fibonacci"
+                  },
+                  {
+                    "name": "FIBONACCI_IMAGE_TAG",
+                    "value": "v1.0.12"
+                  }
+                ]
+              }
+            }
+          } > kustomize_chart/fast-api/overlays/production/workflow-patches.yaml
           git config --global user.email astin75@gmail.com
           git config --global user.name astin75          
           git add .
