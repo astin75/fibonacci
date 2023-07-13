@@ -47,7 +47,8 @@ jobs:
           repository: astin75/git_ops
           token: ${{ secrets.PERSONAL_ACCESS_TOKENS }} 
       - run: |
-          cat <<EOF > kustomize_chart/fast-api/overlays/production/workflow-patches.yaml
+          git switch staging
+          cat <<EOF > kustomize_chart/fast-api/overlays/staging/workflow-patches.yaml
           apiVersion: apps/v1
           kind: WorkflowTemplate
           metadata:
